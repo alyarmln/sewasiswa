@@ -1,4 +1,4 @@
-name: Deploy Bungabucket
+name: Deploy Sewasiswa to Server
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
           script: |
             # Determine branch and deployment details
             if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/bungabucket-prod/florist"
-                COMPOSE_FILE="docker-compose.prod.yml"
-                ENV_CONTENT="${{ secrets.PROD_ENV }}"
+                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-prod/sewasiswa"
+                # COMPOSE_FILE="docker-compose.prod.yml"
+                # ENV_CONTENT="${{ secrets.PROD_ENV }}"
                 BRANCH="main"
             else
-                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/bungabucket-dev/florist"
-                COMPOSE_FILE="docker-compose.dev.yml"
-                ENV_CONTENT="${{ secrets.DEV_ENV }}"
+                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-dev/sewasiswa"
+                # COMPOSE_FILE="docker-compose.dev.yml"
+                # ENV_CONTENT="${{ secrets.DEV_ENV }}"
                 BRANCH="dev"
             fi
 
@@ -42,7 +42,7 @@ jobs:
 
             # Initialize git repo if it doesn't exist
             if [ ! -d .git ]; then
-                git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/Blackaiza/florist.git .
+                git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmin/sewasiswa.git .
             else
                 # Ensure git sees this as safe
                 git config --global --add safe.directory "$DEPLOY_DIR"
@@ -51,12 +51,12 @@ jobs:
             fi
 
             # Write .env safely (overwrite)
-            echo "$ENV_CONTENT" > .env
+            # echo "$ENV_CONTENT" > .env
 
             # Ensure writable directories for Laravel
-            mkdir -p storage bootstrap/cache
-            chmod -R 775 storage bootstrap/cache
+            # mkdir -p storage bootstrap/cache
+            # chmod -R 775 storage bootstrap/cache
 
             # Restart docker
-            docker compose -f $COMPOSE_FILE down
-            docker compose -f $COMPOSE_FILE up -d --build
+            # docker compose -f $COMPOSE_FILE down
+            # docker compose -f $COMPOSE_FILE up -d --build
