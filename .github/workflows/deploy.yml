@@ -49,7 +49,7 @@ jobs:
             # =========================
             # CREATE .ENV (USED BY PHP)
             # =========================
-            VPS_HOST_DB="${{ secrets.VPS_HOST_DB }}"
+            VPS_HOST="${{ secrets.VPS_HOST }}"
             VPS_USERNAME_DB="${{ secrets.VPS_USERNAME_DB }}"
             VPS_PASS_DB="${{ secrets.VPS_PASS_DB }}"
             VPS_NAME_DB="${{ secrets.VPS_NAME_DB }}"
@@ -57,7 +57,7 @@ jobs:
             GERMINI_API="${{ secrets.GERMINI_API }}"
 
             cat > .env <<EOF
-            VPS_HOST_DB=$VPS_HOST_DB
+            VPS_HOST=$VPS_HOST
             VPS_USERNAME_DB=$VPS_USERNAME_DB
             VPS_PASS_DB=$VPS_PASS_DB
             VPS_NAME_DB=$VPS_NAME_DB
