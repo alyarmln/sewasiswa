@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // Jika tiada sesi emel sementara, tendang balik ke loginmasuk.php
 if (!isset($_SESSION['temp_email'])) {
