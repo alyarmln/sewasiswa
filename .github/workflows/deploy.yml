@@ -23,10 +23,10 @@ jobs:
           script: |
             
             if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-prod/sewasiswa"
+              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmln-prod/sewasiswa"
               BRANCH="main"
             else
-              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-dev/sewasiswa"
+              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmln-dev/sewasiswa"
               BRANCH="dev"
             fi
 
@@ -34,7 +34,7 @@ jobs:
             cd "$DEPLOY_DIR" || exit 1
 
             if [ ! -d .git ]; then
-              git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmin/sewasiswa.git .
+              git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmln/sewasiswa.git .
             else
               git config --global --add safe.directory "$DEPLOY_DIR"
               git fetch origin
