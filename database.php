@@ -7,6 +7,9 @@
 
 
 #Aizat akan gantikan file ini untuk dijadikan .env temp baru 
+
+# Tambahan Aizat sini Update 
+
 $VPS_HOST = {{secrets.VPS_HOST}}
 $VPS_USERNAME_DB = {{secrets.VPS_USERNAME_DB}}
 $VPS_PASS_DB = {{secrets.VPS_PASS_DB}}
