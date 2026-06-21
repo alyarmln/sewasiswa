@@ -7,6 +7,8 @@ if (!isset($_SESSION['owner_id'])) {
     exit();
 }
 
+// update db connection code 
+
 $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
 
 // Semak sama ada parameter id dan tindakan telah dihantar melalui URL
