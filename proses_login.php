@@ -52,48 +52,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // --- PROSES HANTAR EMEL OTP VIA PHPMAILER ---
         $mail = new PHPMailer(true);
         try {
-            // $mail->isSMTP();
-            // $mail->Host       = $SMTP_HOST;
-            // $mail->SMTPAuth   = true;
-            // $mail->Username   = $SMTP_USERNAME; 
-            // $mail->Password   = $SMTP_PASS;        
-            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            // $mail->Port       = $SMTP_PORT;
-
-            // // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            // $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
-            // $mail->addAddress($emel_pelajar);
-
-
-            // Untuk Hardcode
-
             $mail->isSMTP();
-            $mail->Host       = 'smtp.hostinger.com';
+            $mail->Host       = $SMTP_HOST;
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'admin@sewasiswa.site'; 
-            $mail->Password   = 'Alyarmln@5359';        
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 465;
-            $mail->Timeout    = 15;
+            $mail->Username   = $SMTP_USERNAME; 
+            $mail->Password   = $SMTP_PASS;        
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = $SMTP_PORT;
             $mail->SMTPDebug = 2;
             $mail->Debugoutput = 'error_log';
 
             // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            $mail->setFrom('admin@sewasiswa.site', 'SewaSiswa UKM');
+            $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
             $mail->addAddress($emel_pelajar);
 
-            
-            // // Test Pakai Server Gmail
-            // $mail->Host       = 'smtp.gmail.com';
-            // $mail->SMTPAuth   = true;
-            // $mail->Username   = 'smollmintj@gmail.com'; 
-            // $mail->Password   = 'lenn aqga tssi jrao';        
-            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            // $mail->Port       = 587;
-
-            // // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            // $mail->setFrom('smollmintj@gmail.com', 'SewaSiswa UKM');
-            // $mail->addAddress($emel_pelajar);
 
             $mail->isHTML(true);
             $mail->Subject = 'Kod Pengesahan Log Masuk SewaSiswa';
