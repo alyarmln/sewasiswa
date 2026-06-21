@@ -3,7 +3,8 @@ $mesej_hantar = false;
 $ralat_hantar = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+    // $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+    require_once "database.php";
     
     if (!$conn) {
         die("Sambungan database gagal: " . mysqli_connect_error());

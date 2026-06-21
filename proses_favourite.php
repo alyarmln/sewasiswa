@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if (!isset($_SESSION['user_id'])) {
     echo "<script>alert('Sila log masuk terlebih dahulu!'); window.location='loginmasuk.php';</script>";

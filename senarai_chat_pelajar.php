@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // Guna pelbagai kemungkinan kunci session untuk elak kick-out
 $user_id = $_SESSION['pelajar_id'] ?? $_SESSION['id'] ?? $_SESSION['user_id'] ?? null;

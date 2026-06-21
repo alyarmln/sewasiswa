@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 $type = mysqli_real_escape_string($conn, $_GET['type']);

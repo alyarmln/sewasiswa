@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emel = mysqli_real_escape_string($conn, $_POST['emel']);

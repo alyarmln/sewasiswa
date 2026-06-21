@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // 1. Pastikan hanya tuan rumah yang log masuk boleh akses
 if (!isset($_SESSION['owner_id'])) {

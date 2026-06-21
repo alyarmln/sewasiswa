@@ -6,7 +6,8 @@ if (!isset($_SESSION['owner_id'])) {
 }
 
 if (isset($_GET['id'])) {
-    $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+    // $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+    require_once "database.php";
     
     // Semak sambungan database
     if (!$conn) {

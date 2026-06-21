@@ -5,7 +5,8 @@ if (!isset($_SESSION['admin_id'])) {
     exit(); 
 }
 
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());

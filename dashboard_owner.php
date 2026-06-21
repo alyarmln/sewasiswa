@@ -7,7 +7,8 @@ if (!isset($_SESSION['owner_id'])) {
     exit();
 }
 
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if (!$conn) {
     die("Sambungan pangkalan data gagal: " . mysqli_connect_error());

@@ -2,12 +2,8 @@
 header('Content-Type: application/json; charset=utf-8');
 
 // 1. SAMBUNGAN PANGKALAN DATA SEWASISWA
-$db_host = "localhost";
-$db_user = "root";     
-$db_pass = "";         
-$db_name = "sewasiswa"; 
-
-$conn = @mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if (!$conn) {
     echo json_encode(array("jawapan" => "Aduh, pangkalan data gagal disambung. Sila hubungi admin."), JSON_UNESCAPED_UNICODE);

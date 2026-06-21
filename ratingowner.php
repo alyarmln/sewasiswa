@@ -1,6 +1,7 @@
 <?php
 // Sambungan ke Database
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa_db");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // Simulasi mengambil data tuan rumah berdasarkan ID (biasanya dari URL atau Session)
 // Contoh: ratingowner.php?id=5

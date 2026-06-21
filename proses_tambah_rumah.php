@@ -2,7 +2,8 @@
 session_start();
 
 // 1. Sambungan ke Database
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // Semak sambungan
 if (!$conn) {

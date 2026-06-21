@@ -1,6 +1,7 @@
 <?php
 // 1. Sambungan ke Database
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // 2. Panggil PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;

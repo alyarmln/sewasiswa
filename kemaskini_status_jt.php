@@ -9,7 +9,8 @@ if (!isset($_SESSION['owner_id'])) {
 
 // update db connection code 
 
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // Semak sama ada parameter id dan tindakan telah dihantar melalui URL
 if (isset($_GET['id']) && isset($_GET['tindakan'])) {

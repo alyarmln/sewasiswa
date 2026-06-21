@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 // 1. Sekatan Akses: Pastikan pelajar sudah log masuk
 if (!isset($_SESSION['user_id'])) {

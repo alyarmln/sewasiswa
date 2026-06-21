@@ -1,7 +1,8 @@
 <?php
 session_start();
 // Sambungan ke database
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if (!isset($_SESSION['owner_id'])) {
     header("Location: login_owner.php");

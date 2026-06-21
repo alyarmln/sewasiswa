@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+// $conn = mysqli_connect("localhost", "root", "", "sewasiswa");
+require_once "database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sesi dikesan mengikut siapa yang sedang aktif log masuk
