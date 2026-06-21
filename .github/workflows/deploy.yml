@@ -34,10 +34,9 @@ jobs:
             mkdir -p "$DEPLOY_DIR"
             cd "$DEPLOY_DIR" || exit 1
 
-            # =========================================
-            # ALWAYS PULL LATEST REPO (FORCE SYNC)
-            # =========================================
-
+            # =========================
+            # ALWAYS FORCE LATEST CODE
+            # =========================
             if [ -d .git ]; then
               git config --global --add safe.directory "$DEPLOY_DIR"
               git fetch origin $BRANCH
@@ -47,15 +46,16 @@ jobs:
               git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmln/sewasiswa.git .
             fi
 
-            # =========================================
-            # EXPORT ENV VARIABLES
-            # =========================================
+            # =========================
+            # CREATE .ENV (USED BY PHP)
+            # =========================
+            cat <<EOF > .env
+VPS_HOST=${{ secrets.VPS_HOST }}
+VPS_USERNAME_DB=${{ secrets.VPS_USERNAME_DB }}
+VPS_PASS_DB=${{ secrets.VPS_PASS_DB }}
+VPS_NAME_DB=${{ secrets.VPS_NAME_DB }}
+GIT_TOKEN=${{ secrets.GIT_TOKEN }}
+GERMINI_API=${{ secrets.GERMINI_API }}
+EOF
 
-            export VPS_HOST="${{ secrets.VPS_HOST }}"
-            export VPS_USERNAME_DB="${{ secrets.VPS_USERNAME_DB }}"
-            export VPS_PASS_DB="${{ secrets.VPS_PASS_DB }}"
-            export VPS_NAME_DB="${{ secrets.VPS_NAME_DB }}"
-            export GIT_TOKEN="${{ secrets.GIT_TOKEN }}"
-            export GERMINI_API="${{ secrets.GERMINI_API }}"
-
-            echo "Latest repo pulled and ENV loaded successfully"
+            echo "Deploy completed successfully"

@@ -1,23 +1,15 @@
 <?php
 
-// $VPS_HOST = getenv('VPS_HOST');
-// $VPS_USERNAME_DB = getenv('VPS_USERNAME_DB');
-// $VPS_PASS_DB = getenv('VPS_PASS_DB');
-// $VPS_NAME_DB = getenv('VPS_NAME_DB');
+$env = parse_ini_file(__DIR__.'/.env');
 
-// // $API_KEY = getenv('GERMINI_API');
+if (!$env) {
+    die("ENV file not found or empty");
+}
 
-// $conn = mysqli_connect(
-//     $VPS_HOST,
-//     $VPS_USERNAME_DB,
-//     $VPS_PASS_DB,
-//     $VPS_NAME_DB
-// );
-
-$VPS_HOST = $_ENV['VPS_HOST'] ?? getenv('VPS_HOST');
-$VPS_USERNAME_DB = $_ENV['VPS_USERNAME_DB'] ?? getenv('VPS_USERNAME_DB');
-$VPS_PASS_DB = $_ENV['VPS_PASS_DB'] ?? getenv('VPS_PASS_DB');
-$VPS_NAME_DB = $_ENV['VPS_NAME_DB'] ?? getenv('VPS_NAME_DB');
+$VPS_HOST = $env['VPS_HOST'];
+$VPS_USERNAME_DB = $env['VPS_USERNAME_DB'];
+$VPS_PASS_DB = $env['VPS_PASS_DB'];
+$VPS_NAME_DB = $env['VPS_NAME_DB'];
 
 $conn = mysqli_connect(
     $VPS_HOST,
