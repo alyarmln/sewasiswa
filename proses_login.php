@@ -67,30 +67,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Untuk Hardcode
 
-            // $mail->isSMTP();
-            // $mail->Host       = 'smtp.hostinger.com';
-            // $mail->SMTPAuth   = true;
-            // $mail->Username   = 'admin@sewasiswa.site'; 
-            // $mail->Password   = 'Alyarmln@5359';        
-            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            // $mail->Port       = 465;
-
-            // // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            // $mail->setFrom('admin@sewasiswa.site', 'SewaSiswa UKM');
-            // $mail->addAddress($emel_pelajar);
-
-            
-            // Test Pakai Server Gmail
-            $mail->Host       = 'smtp.gmail.com';
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.hostinger.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'smollmintj@gmail.com'; 
-            $mail->Password   = 'lenn aqga tssi jrao';        
+            $mail->Username   = 'admin@sewasiswa.site'; 
+            $mail->Password   = 'Alyarmln@5359';        
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->Port       = 465;
 
             // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            $mail->setFrom('smollmintj@gmail.com', 'SewaSiswa UKM');
+            $mail->setFrom('admin@sewasiswa.site', 'SewaSiswa UKM');
             $mail->addAddress($emel_pelajar);
+
+            
+            // // Test Pakai Server Gmail
+            // $mail->Host       = 'smtp.gmail.com';
+            // $mail->SMTPAuth   = true;
+            // $mail->Username   = 'smollmintj@gmail.com'; 
+            // $mail->Password   = 'lenn aqga tssi jrao';        
+            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            // $mail->Port       = 587;
+
+            // // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
+            // $mail->setFrom('smollmintj@gmail.com', 'SewaSiswa UKM');
+            // $mail->addAddress($emel_pelajar);
 
             $mail->isHTML(true);
             $mail->Subject = 'Kod Pengesahan Log Masuk SewaSiswa';
