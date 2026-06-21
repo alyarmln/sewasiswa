@@ -1,19 +1,15 @@
-<?php 
+<?php
 
-#Database Connection , no need to implement in all files
-# Means panggil je file ni dalam semua file yang guna DB
+$VPS_HOST = getenv('VPS_HOST');
+$VPS_USERNAME_DB = getenv('VPS_USERNAME_DB');
+$VPS_PASS_DB = getenv('VPS_PASS_DB');
+$VPS_NAME_DB = getenv('VPS_NAME_DB');
 
-#ini test untuk version control serta guna GIT PUSH , PULL
+// $API_KEY = getenv('GERMINI_API');
 
-
-#Aizat akan gantikan file ini untuk dijadikan .env temp baru 
-
-# Tambahan Aizat sini Update 
-
-$VPS_HOST = {{secrets.VPS_HOST}}
-$VPS_USERNAME_DB = {{secrets.VPS_USERNAME_DB}}
-$VPS_PASS_DB = {{secrets.VPS_PASS_DB}}
-$VPS_NAME_DB = {{secrets.VPS_NAME_DB}}
-
-
-$conn = mysqli_connect( $VPS_HOST, $VPS_USERNAME_DB , $VPS_PASS_DB , $VPS_NAME_DB );
+$conn = mysqli_connect(
+    $VPS_HOST,
+    $VPS_USERNAME_DB,
+    $VPS_PASS_DB,
+    $VPS_NAME_DB
+);

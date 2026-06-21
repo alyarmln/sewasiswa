@@ -38,7 +38,10 @@ if ($result && mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 
 // 4. TETAPAN API KEY GEMINI (Kunci rasmi anda dari akaun Gmail peribadi)
-$gemini_api_key = "AQ.Ab8RN6LeKQGaiRMZIJHdifdXb-v_POCBwqhMvsrdCPnWIj8_rg"; 
+// $gemini_api_key = "AQ.Ab8RN6LeKQGaiRMZIJHdifdXb-v_POCBwqhMvsrdCPnWIj8_rg"; 
+
+$gemini_api_key = getenv('GERMINI_API');; 
+
 
 // Arahan Sistem untuk membentuk personaliti chatbot
 $system_instruction = "Anda adalah SewaSiswa AI, chatbot pintar untuk aplikasi carian rumah sewa pelajar UKM. 

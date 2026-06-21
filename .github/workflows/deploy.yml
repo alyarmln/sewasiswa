@@ -21,42 +21,35 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            # Determine branch and deployment details
+            
             if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-prod/sewasiswa"
-                # COMPOSE_FILE="docker-compose.prod.yml"
-                # ENV_CONTENT="${{ secrets.PROD_ENV }}"
-                BRANCH="main"
+              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-prod/sewasiswa"
+              BRANCH="main"
             else
-                DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-dev/sewasiswa"
-                # COMPOSE_FILE="docker-compose.dev.yml"
-                # ENV_CONTENT="${{ secrets.DEV_ENV }}"
-                BRANCH="dev"
+              DEPLOY_DIR="/home/${{ secrets.VPS_USER }}/alyarmin-dev/sewasiswa"
+              BRANCH="dev"
             fi
 
-            # Create deploy directory if it doesn't exist
             mkdir -p "$DEPLOY_DIR"
-
-            # Move into deploy directory
             cd "$DEPLOY_DIR" || exit 1
 
-            # Initialize git repo if it doesn't exist
             if [ ! -d .git ]; then
-                git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmin/sewasiswa.git .
+              git clone -b $BRANCH https://${{ secrets.GIT_TOKEN }}@github.com/alyarmin/sewasiswa.git .
             else
-                # Ensure git sees this as safe
-                git config --global --add safe.directory "$DEPLOY_DIR"
-                git fetch origin
-                git reset --hard origin/$BRANCH
+              git config --global --add safe.directory "$DEPLOY_DIR"
+              git fetch origin
+              git reset --hard origin/$BRANCH
             fi
 
-            # Write .env safely (overwrite)
-            # echo "$ENV_CONTENT" > .env
+            # Create .env file from GitHub Secrets
+            cat <<EOF > .env
+            VPS_HOST=${{ secrets.VPS_HOST_DB }}
+            VPS_USERNAME_DB=${{ secrets.VPS_USERNAME_DB }}
+            VPS_PASS_DB=${{ secrets.VPS_PASS_DB }}
+            VPS_NAME_DB=${{ secrets.VPS_NAME_DB }}
+            GIT_TOKEN=${{ secrets.GIT_TOKEN }}
+            GERMINI_API={{ secrets.GERMINI_API }}
+            EOF
 
-            # Ensure writable directories for Laravel
-            # mkdir -p storage bootstrap/cache
-            # chmod -R 775 storage bootstrap/cache
-
-            # Restart docker
-            # docker compose -f $COMPOSE_FILE down
-            # docker compose -f $COMPOSE_FILE up -d --build
+            # Optional permissions (safe for PHP projects)
+            chmod 644 .env || true
