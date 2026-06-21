@@ -52,16 +52,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // --- PROSES HANTAR EMEL OTP VIA PHPMAILER ---
         $mail = new PHPMailer(true);
         try {
+            // $mail->isSMTP();
+            // $mail->Host       = $SMTP_HOST;
+            // $mail->SMTPAuth   = true;
+            // $mail->Username   = $SMTP_USERNAME; 
+            // $mail->Password   = $SMTP_PASS;        
+            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            // $mail->Port       = $SMTP_PORT;
+
+            // // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
+            // $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
+            // $mail->addAddress($emel_pelajar);
+
             $mail->isSMTP();
-            $mail->Host       = $SMTP_HOST;
+            $mail->Host       = 'smtp.hostinger.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = $SMTP_USERNAME; 
-            $mail->Password   = $SMTP_PASS;        
+            $mail->Username   = 'admin@sewasiswa.site'; 
+            $mail->Password   = 'Alyarmln@5359';        
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $SMTP_PORT;
+            $mail->Port       = 465;
 
             // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
+            $mail->setFrom('admin@sewasiswa.site', 'SewaSiswa UKM');
             $mail->addAddress($emel_pelajar);
 
             $mail->isHTML(true);
