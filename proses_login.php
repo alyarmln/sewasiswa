@@ -74,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Password   = 'Alyarmln@5359';        
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 465;
+            $mail->Timeout    = 15;
             $mail->SMTPDebug = 2;
             $mail->Debugoutput = 'error_log';
 
