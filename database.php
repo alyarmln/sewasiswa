@@ -18,6 +18,12 @@ $conn = mysqli_connect(
     $VPS_NAME_DB
 );
 
+$SMTP_HOST =$env['SMTP_HOST'];
+$SMTP_PORT =$env['SMTP_PORT'];
+$SMTP_USERNAME =$env['SMTP_USERNAME'];
+$SMTP_PASS =$env['SMTP_PASS'];
+$GERMINI_API =$env['GERMINI_API'];
+
 if (!$conn) {
     die("DB connection failed: " . mysqli_connect_error());
 }

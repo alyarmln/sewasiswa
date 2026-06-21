@@ -53,15 +53,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
+            $mail->Host       = $SMTP_HOST;
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'smollmintj@gmail.com'; 
-            $mail->Password   = 'lenn aqga tssi jrao';        
+            $mail->Username   = $SMTP_USERNAME; 
+            $mail->Password   = $SMTP_PASS;        
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->Port       = $SMTP_PORT;
 
             // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
-            $mail->setFrom('smollmintj@gmail.com', 'SewaSiswa UKM');
+            $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
             $mail->addAddress($emel_pelajar);
 
             $mail->isHTML(true);
