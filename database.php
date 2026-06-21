@@ -6,8 +6,7 @@
 #ini test untuk version control serta guna GIT PUSH , PULL
 
 
-#Aizat akan gantikan file ini untuk dijadikan .env temp
-
+#Aizat akan gantikan file ini untuk dijadikan .env temp baru 
 $VPS_HOST = {{secrets.VPS_HOST}}
 $VPS_USERNAME_DB = {{secrets.VPS_USERNAME_DB}}
 $VPS_PASS_DB = {{secrets.VPS_PASS_DB}}
