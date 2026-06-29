@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 4. Simpan ke Database (Table: tuan_rumah)
     // Pastikan nama kolum dalam database anda sama dengan kod ini
-    $query = "INSERT INTO tuan_rumah (nama, no_telefon, emel, kategori, alamat, deskripsi, gambar_profil, gambar_mykad, bil_utiliti, password, status) 
+    $query = "INSERT INTO tuan_rumah (nama, no_telefon, emel, kategori, alamat, deskripsi_bisnes, gambar_profil, gambar_mykad, bil_utiliti, password, status) 
               VALUES ('$nama', '$no_telefon', '$emel', '$kategori', '$alamat', '$deskripsi', '$gambar_profil', '$gambar_mykad', '$bil_utiliti', '$password', 'Pending')";
 
     if (mysqli_query($conn, $query)) {
