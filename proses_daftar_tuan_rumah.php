@@ -43,14 +43,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail = new PHPMailer(true);
 
         try {
-            $mail->isSMTP();
-            $mail->Host       = 'sandbox.smtp.mailtrap.io';
-            $mail->SMTPAuth   = true;
-            $mail->Port       = 2525;
-            $mail->Username   = 'b12a8b398d68ad'; 
-            $mail->Password   = '78a3345aa52177'; 
+            // $mail->isSMTP();
+            // $mail->Host       = 'sandbox.smtp.mailtrap.io';
+            // $mail->SMTPAuth   = true;
+            // $mail->Port       = 2525;
+            // $mail->Username   = 'b12a8b398d68ad'; 
+            // $mail->Password   = '78a3345aa52177'; 
 
-            $mail->setFrom('admin@sewasiswa.com', 'SewaSiswa Admin');
+            // $mail->setFrom('admin@sewasiswa.com', 'SewaSiswa Admin');
+            $mail->isSMTP();
+            $mail->Host       = $SMTP_HOST;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $SMTP_USERNAME; 
+            $mail->Password   = $SMTP_PASS;        
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = $SMTP_PORT;
+            $mail->SMTPDebug = 2;
+            $mail->Debugoutput = 'error_log';
+
+            // Diselaraskan dengan SMTP Username anda supaya penghantaran lancar
+            $mail->setFrom($SMTP_USERNAME, 'SewaSiswa UKM');
             $mail->addAddress($emel, $nama); 
 
             $mail->isHTML(true);
