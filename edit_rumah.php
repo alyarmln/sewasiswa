@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Baiki ralat Undefined Array Key
     $furnishing = isset($_POST['furnishing']) ? mysqli_real_escape_string($conn, $_POST['furnishing']) : 'None';
-    $carpark = isset($_POST['carpark']) ? mysqli_real_escape_string($conn, $_POST['carpark']) : 'None';
+    $carpark = isset($_POST['carpark']) ? mysqli_real_escape_string($conn, $_POST['carpark']) : 0;
     
     $hargaSewa = mysqli_real_escape_string($conn, $_POST['hargaSewa']);
     $alamat_rumah = mysqli_real_escape_string($conn, $_POST['alamat_rumah']);
