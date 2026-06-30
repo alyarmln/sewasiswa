@@ -36,7 +36,8 @@ mysqli_close($conn);
 // 4. TETAPAN API KEY GEMINI (Kunci rasmi anda dari akaun Gmail peribadi)
 // $gemini_api_key = "AQ.Ab8RN6LeKQGaiRMZIJHdifdXb-v_POCBwqhMvsrdCPnWIj8_rg"; 
 
-$gemini_api_key = getenv('GERMINI_API');; 
+// $gemini_api_key = getenv('GERMINI_API');
+$gemini_api_key = $GERMINI_API;
 
 
 // Arahan Sistem untuk membentuk personaliti chatbot
