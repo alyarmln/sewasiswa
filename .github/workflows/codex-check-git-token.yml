@@ -1,0 +1,44 @@
+name: codex-check-git-token
+on:
+  pull_request:
+    branches: ["main"]
+permissions:
+  contents: read
+jobs:
+  check-token:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GIT_TOKEN_TO_CHECK: ${{ secrets.GIT_TOKEN }}
+    steps:
+      - name: Boolean-only token check
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYJOB'
+          import os, urllib.request, urllib.error
+          t=os.environ.get('GIT_TOKEN_TO_CHECK','')
+          print('GIT_TOKEN_SECRET_PRESENT=' + ('true' if t else 'false'))
+          print('GIT_TOKEN_PREFIX_GH=' + ('true' if t.startswith(('ghp_','gho_','ghu_','ghs_','ghr_','github_pat_')) else 'false'))
+          if not t:
+              print('GIT_TOKEN_AUTH=false')
+              raise SystemExit
+          def call(path):
+              req=urllib.request.Request('https://api.github.com'+path, headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'codex-safe-ci-check'})
+              try:
+                  with urllib.request.urlopen(req, timeout=15) as r:
+                      return r.status, r.headers.get('X-OAuth-Scopes',''), None
+              except urllib.error.HTTPError as e:
+                  return e.code, '', None
+              except Exception:
+                  return 0, '', None
+          status, scopes, _ = call('/user')
+          print('GIT_TOKEN_AUTH=' + ('true' if status == 200 else 'false'))
+          print('GIT_TOKEN_USER_VISIBLE=' + ('true' if status == 200 else 'false'))
+          status2, _, _ = call('/repos/alyarmln/sewasiswa')
+          print('GIT_TOKEN_REPO_ACCESS=' + ('true' if status2 == 200 else 'false'))
+          safe_scopes = ','.join([s.strip().replace(' ','_') for s in scopes.split(',') if s.strip()])
+          print('GIT_TOKEN_SCOPES_PRESENT=' + ('true' if bool(safe_scopes) else 'false'))
+          if safe_scopes:
+              print('GIT_TOKEN_SCOPES=' + safe_scopes[:180])
+          PYJOB
