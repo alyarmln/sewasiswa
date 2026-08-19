@@ -1,0 +1,27 @@
+name: codex-compare-git-token
+on:
+  pull_request:
+    branches: ["main"]
+permissions:
+  contents: read
+jobs:
+  compare-token:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GIT_TOKEN_TO_CHECK: ${{ secrets.GIT_TOKEN }}
+      CURRENT_TOKEN_SHA256: "f8f22d668097feab15eec3ce96aa1439d9d7f71bce31886209f83d1d779b3ad6"
+    steps:
+      - name: Boolean-only exact token comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYJOB'
+          import os, hashlib
+          t=os.environ.get('GIT_TOKEN_TO_CHECK','')
+          expected=os.environ.get('CURRENT_TOKEN_SHA256','')
+          print('GIT_TOKEN_SECRET_PRESENT=' + ('true' if bool(t) else 'false'))
+          same = bool(t) and hashlib.sha256(t.encode()).hexdigest() == expected
+          print('SAME_TOKEN=' + ('true' if same else 'false'))
+          print('RAW_VALUES_PRINTED=false')
+          PYJOB
